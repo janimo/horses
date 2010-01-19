@@ -15,19 +15,27 @@
 # limitations under the License.
 #
 
+import string
 
 from google.appengine.ext import webapp
 from google.appengine.ext.webapp import util
+from google.appengine.ext.webapp.util import login_required
 from google.appengine.api import users
 from google.appengine.api import mail
 
 
 class MainHandler(webapp.RequestHandler):
-
   def get(self):
-    self.response.out.write("<a href='/mail'>Send</a> mail!")
+    user = users.get_current_user()
+    if user == None:
+	nick = "alma ata"
+    else:
+        nick = user.nickname()
+    nick = string.join(map(string.capitalize, string.split(nick)))
+    self.response.out.write("Hello %s ! <a href='/mail'>Send</a> mail!"	% (nick))
 
 class SendMail(webapp.RequestHandler):
+  @login_required
   def get(self):
     user_address = users.get_current_user().email()
     if mail.is_email_valid(user_address):
