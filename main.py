@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+# coding: utf-8
 #
 # Copyright 2007 Google Inc.
 #
@@ -16,43 +17,65 @@
 #
 
 import string
+import os
 
 from google.appengine.ext import webapp
-from google.appengine.ext.webapp import util
-from google.appengine.ext.webapp.util import login_required
+from google.appengine.ext.webapp import template
+from google.appengine.ext.webapp.util import *
 from google.appengine.api import users
 from google.appengine.api import mail
 
+import ro
 
 class MainHandler(webapp.RequestHandler):
-  def get(self):
-    user = users.get_current_user()
-    if user == None:
-	nick = "alma ata"
-    else:
-        nick = user.nickname()
-    nick = string.join(map(string.capitalize, string.split(nick)))
-    self.response.out.write("Hello %s ! <a href='/mail'>Send</a> mail!"	% (nick))
+    def get(self):
+        user = users.get_current_user()
+        if user == None:
+            nick = ""
+        else:
+            nick = user.nickname()
+            nick = string.join(map(string.capitalize, string.split(nick)))
+
+        template_values = {'username': nick}
+        path = os.path.join(os.path.dirname(__file__), 'index.html')
+        self.response.out.write(template.render(path, template_values))
 
 class SendMail(webapp.RequestHandler):
-  @login_required
-  def get(self):
-    user_address = users.get_current_user().email()
-    if mail.is_email_valid(user_address):
-	    mail.send_mail(user_address, user_address, "Test GAE", """
-	    Hello from GAE!
-	    """)
-    self.response.out.write("Sent to email: " + user_address)
+    @login_required
+    def get(self):
+        user = users.get_current_user()
+        user_address = user.email()
+        user_name = string.join(map(string.capitalize, string.split(user.nickname())))
 
+        i = 0
+        if mail.is_email_valid(user_address):
+            for mep in ro.meps:
+                i += 1
+                m, dest_address = mep.split()
+                if m == "Mr":
+                    greet = "Stimate Domnule Parlamentar"
+                else:
+                    greet = "Stimată Doamnă Parlamentar"
+
+                mail.send_mail(user_address,
+                               dest_address,
+                               ro.mail_subj,
+                               greet + ro.mail_body + user_name,
+                               )
+
+        self.response.out.write("Emails sent to %d MEPs. Check your GMail Sent folder for proof." % (i))
 
 def main():
-  application = webapp.WSGIApplication([
-	  				('/', MainHandler),
-	  				('/mail', SendMail),
-					],
-                                       debug=True)
-  util.run_wsgi_app(application)
+    application = webapp.WSGIApplication([
+        ('/', MainHandler),
+        ('/mail', SendMail),
+        ],
+        debug=True)
+    run_wsgi_app(application)
 
 
 if __name__ == '__main__':
-  main()
+    main()
+
+# vim:ts=4:sw=4:softtabstop=4:smarttab:expandtab
+
