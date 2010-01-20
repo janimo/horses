@@ -1,8 +1,5 @@
 # coding: utf-8
 meps = [
-		"Mr jani.monoses@gmail.com",
-		]
-mepsi = [
 	"Mr adrian.severin@europarl.europa.eu",
 	"Mr cristiandan.preda@europarl.europa.eu",
 	"Mr csaba.sogor@europarl.europa.eu",
