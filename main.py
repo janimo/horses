@@ -18,6 +18,7 @@
 
 import string
 import os
+import cgi
 
 from google.appengine.ext import webapp
 from google.appengine.ext.webapp import template
@@ -45,7 +46,7 @@ class SendMail(webapp.RequestHandler):
     def get(self):
         user = users.get_current_user()
         user_address = user.email()
-        user_name = string.join(map(string.capitalize, string.split(user.nickname())))
+        user_name = self.request.str_GET["username"]
 
         i = 0
         if mail.is_email_valid(user_address):
@@ -60,7 +61,8 @@ class SendMail(webapp.RequestHandler):
                 mail.send_mail(user_address,
                                dest_address,
                                ro.mail_subj,
-                               greet + ro.mail_body + user_name,
+                               greet + ro.mail_body
+                               + user_name,
                                )
 
         self.response.out.write("Emails sent to %d MEPs. Check your GMail Sent folder for proof." % (i))
