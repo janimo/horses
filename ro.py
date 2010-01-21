@@ -14,7 +14,7 @@ meps = [
 	"Mr tudorcorneliu.vadim@europarl.europa.eu",
 	"Mr victor.bostinaru@europarl.europa.eu",
 	"Mr catalin-sorin.ivan@europarl.europa.eu",
-	"Ms claudiuciprian.tanasescu@europarl.europa.eu",
+	"Mr claudiuciprian.tanasescu@europarl.europa.eu",
 	"Ms norica.nicolai@europarl.europa.eu",
 	"Ms renate.weber@europarl.europa.eu",
 	"Ms rovana.plumb@europarl.europa.eu",
