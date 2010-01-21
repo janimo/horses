@@ -25,6 +25,7 @@ from google.appengine.ext.webapp import template
 from google.appengine.ext.webapp.util import *
 from google.appengine.api import users
 from google.appengine.api import mail
+from google.appengine.api.labs import taskqueue
 
 import ro
 
@@ -42,6 +43,24 @@ class MainHandler(webapp.RequestHandler):
         self.response.out.write(template.render(path, template_values))
 
 class SendMail(webapp.RequestHandler):
+    def post(self):
+        user_address = self.request.get('ua')
+        user_name = self.request.str_POST["un"]
+        mep = self.request.get('mep')
+        m, dest_address = mep.split()
+        dest_address = 'jani.monoses+'+string.split(dest_address,'@')[0]+'@gmail.com'
+        if m == "Mr":
+            greet = "Stimate Domnule Parlamentar"
+        else:
+            greet = "Stimată Doamnă Parlamentar"
+
+        mail.send_mail(user_address,
+                       dest_address,
+                       ro.mail_subj,
+                       greet + ro.mail_body + user_name,
+                       )
+
+
     @login_required
     def get(self):
         user = users.get_current_user()
@@ -49,28 +68,25 @@ class SendMail(webapp.RequestHandler):
         user_name = self.request.str_GET["username"]
 
         i = 0
+
         if mail.is_email_valid(user_address):
             for mep in ro.meps:
                 i += 1
-                m, dest_address = mep.split()
-                if m == "Mr":
-                    greet = "Stimate Domnule Parlamentar"
-                else:
-                    greet = "Stimată Doamnă Parlamentar"
+                taskqueue.add(url='/mail', params={'mep':mep, 'ua': user_address, 'un': user_name})
 
-                mail.send_mail(user_address,
-                               dest_address,
-                               ro.mail_subj,
-                               greet + ro.mail_body
-                               + user_name,
-                               )
+        self.redirect('/done?meps=%d' % (i))
 
-        self.response.out.write("Emails sent to %d MEPs. Check your GMail Sent folder for proof." % (i))
+class SentMail(webapp.RequestHandler):
+    def get(self):
+        template_values = {'num': self.request.get('meps')}
+        path = os.path.join(os.path.dirname(__file__), 'done.html')
+        self.response.out.write(template.render(path, template_values))
 
 def main():
     application = webapp.WSGIApplication([
         ('/', MainHandler),
         ('/mail', SendMail),
+        ('/done', SentMail),
         ],
         debug=True)
     run_wsgi_app(application)
