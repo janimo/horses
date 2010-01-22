@@ -72,7 +72,10 @@ class SendMail(webapp.RequestHandler):
         if mail.is_email_valid(user_address):
             for mep in ro.meps:
                 i += 1
-                taskqueue.add(url='/mail', params={'mep':mep, 'ua': user_address, 'un': user_name})
+                task = taskqueue.Task(url='/mail',
+                                      params={'mep':mep, 'ua': user_address, 'un': user_name}
+                                      )
+                task.add(queue_name='email-queue')
 
         self.redirect('/done?meps=%d' % (i))
 
