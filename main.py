@@ -33,7 +33,7 @@ class MainHandler(webapp.RequestHandler):
     def get(self):
         user = users.get_current_user()
         if user == None:
-            nick = ""
+            nick = "Not Signed in User"
         else:
             nick = user.nickname()
             nick = string.join(map(string.capitalize, string.split(nick)))
