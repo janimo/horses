@@ -1,18 +1,36 @@
 <html>
+	<head>
+		<style type="text/css">
+		pre {
+		white-space: pre-wrap; /* css-3 */
+		white-space: -moz-pre-wrap !important; /* Mozilla, since 1999 */
+		white-space: -pre-wrap; /* Opera 4-6 */
+		white-space: -o-pre-wrap; /* Opera 7 */
+		word-wrap: break-word; /* Internet Explorer 5.5+ */
+	        }
+               </style>
+	</head>
 	<body>
 		Hello {{ username}} !
-		<br><br>
-		<p>
-		The Written Declaration 54/2009 ( see <a href=http://www.worldhorsewelfare.org/help-tomorrow/long-distance-transportation>details</a> ) that needs signatories from the European Parliament has better chances of getting signed if you ask your MEP, before January the 21st 2010.<br>
-		 On the web - see link above - there are pre-written templates you can paste in your email client, and spreadsheets from which you can fish out the email addresses and names of MEPs to target. But that can take minutes!
-		</p>
 		<br>
+		<p>
+		This website lets you quickly send an email to all MEPs regarding the Written Declaration 54/2009 ( see <a href=http://www.worldhorsewelfare.org/help-tomorrow/long-distance-transportation>details</a> ) that needs to be signed by half the MEPs in order to pass.<br>
+		</p>
 
-		This site lets you send an already composed email to all the MEPs (Ro only) using your GMail account if you have one. Your password stays safe, everything happens at Google's servers. Afterwards you will see the emails sent in your GMail Sent folder. It takes about 42 seconds. <br><br>
+		You need to have a GMail account and will be asked to sign in. Your password stays safe, everything happens at Google's servers. Afterwards you will see the emails sent in your GMail Sent folder. <br><br>
 		<form action='/mail' method='get'>
-			<label>Please enter your full name, to be used in the closing message in the email.
-			<input type='text' name='username' value=''><br>
+			<label>Please enter your full name, to be used in the closing of the email.
+			<input type='text' name='username' value=''>
 			<input type='submit' value='Send emails to MEPs'>
 		</form>
+		<br>
+		This is the body of the email you'll send (taken from <a href="worldhorsewelfare.ro">http://worldhorsewelfare.ro<a/>)
+		<br>
+		<p>
+		<pre>
+		{{ mail }}
+                </pre>
+		</p>
+		<br>
 	</body>
 </html>

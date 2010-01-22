@@ -38,7 +38,7 @@ class MainHandler(webapp.RequestHandler):
             nick = user.nickname()
             nick = string.join(map(string.capitalize, string.split(nick)))
 
-        template_values = {'username': nick}
+        template_values = {'username': nick, 'mail': ro.mail_body}
         path = os.path.join(os.path.dirname(__file__), 'index.html')
         self.response.out.write(template.render(path, template_values))
 
