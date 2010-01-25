@@ -1,3 +1,0 @@
-queue:
-- name: email-queue
-  rate: 8/m
