@@ -20,6 +20,7 @@ import string
 import os
 import cgi
 
+from google.appengine.ext import db
 from google.appengine.ext import webapp
 from google.appengine.ext.webapp import template
 from google.appengine.ext.webapp.util import *
@@ -28,6 +29,11 @@ from google.appengine.api import mail
 from google.appengine.api.labs import taskqueue
 
 import ro
+
+class SentMails(db.Model):
+    """ Mapping of user to country for which MEPs mail was sent"""
+    friend = db.UserProperty()
+    countries = db.StringListProperty()
 
 class MainHandler(webapp.RequestHandler):
     def get(self):
@@ -49,6 +55,14 @@ class SendMail(webapp.RequestHandler):
         user_address = user.email()
         user_name = self.request.str_GET["username"]
 
+        query = SentMails.gql("WHERE friend = :1", user)
+
+        res = query.get()
+
+        if res:
+            self.redirect(users.create_logout_url('/done'))
+            return
+
         if mail.is_email_valid(user_address):
             for mep in ro.meps:
                 m, dest_address = mep.split()
@@ -63,6 +77,12 @@ class SendMail(webapp.RequestHandler):
                         ro.mail_subj,
                         greet + ro.mail_body + user_name
                         )
+
+        # Save
+        sm = SentMails()
+        sm.friend = user
+        sm.countries = ['ro']
+        sm.put()
 
         self.redirect(users.create_logout_url('/done?meps=%d' % (len(ro.meps))))
 
