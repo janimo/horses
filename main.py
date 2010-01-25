@@ -66,7 +66,6 @@ class SendMail(webapp.RequestHandler):
         if mail.is_email_valid(user_address):
             for mep in ro.meps:
                 m, dest_address = mep.split()
-                dest_address = 'jani.monoses+'+string.split(dest_address,'@')[0]+'@gmail.com'
                 if m == "Mr":
                     greet = "Stimate Domnule Parlamentar"
                 else:
