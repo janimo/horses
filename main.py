@@ -64,7 +64,7 @@ class SendMail(webapp.RequestHandler):
                         greet + ro.mail_body + user_name
                         )
 
-        self.redirect('/done?meps=%d' % (len(ro.meps)))
+        self.redirect(users.create_logout_url('/done?meps=%d' % (len(ro.meps))))
 
 class SentMail(webapp.RequestHandler):
     def get(self):
