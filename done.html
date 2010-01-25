@@ -1,5 +1,9 @@
 <html>
 	<body>
+		{% ifequal num "" %}
+		The unicorns and ponies thank you for your zeal. Sending the mails once is enough though :) Bye.
+		{% else %}
 		Emails will soon be sent to {{ num }} MEPs. Check your GMail Sent folder for proof. The unicorns and ponies thank you. Bye.
+		{% endifequal %}
 	</body>
 </html>
