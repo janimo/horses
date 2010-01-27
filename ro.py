@@ -20,6 +20,9 @@ meps = [
 	"Ms vasilicaviorica.dancila@europarl.europa.eu"
 	]
 
+mrgreet = "Stimate Domnule Parlamentar"
+msgreet = "Stimată Doamnă Parlamentar"
+
 mail_subj = "Vă rog să semnaţi Declaraţia Scrisă 54/2009"
 
 mail_body = """

@@ -67,9 +67,9 @@ class SendMail(webapp.RequestHandler):
             for mep in ro.meps:
                 m, dest_address = mep.split()
                 if m == "Mr":
-                    greet = "Stimate Domnule Parlamentar"
+                    greet = ro.mrgreet
                 else:
-                    greet = "Stimată Doamnă Parlamentar"
+                    greet = ro.msgreet
 
                 mail.send_mail(user_address,
                         dest_address,
