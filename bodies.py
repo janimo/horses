@@ -120,7 +120,7 @@ As a horse-lover and your constituent, I am writing to request your help to stop
 
 100,000 horses are transported in horrific conditions across Europe annually, for days on end, in the height of summer and the depths of winter, without rest, food or water. The current legislation, EU Council Regulation (EC) 1/2005 has serious deficiencies and some Member States do not rigorously enforce it, resulting in exhaustion, injury, pain and stress among horses.
 
-These journeys are not only inhumane but totally unnecessary. 
+These journeys are not only inhumane but totally unnecessary.
 
 World Horse Welfare has identified one slaughter route through Europe, which passes 180 licensed horse slaughter yards before reaching its final destination. Horses should be slaughtered as close to the point of origin as possible and transported as meat, not forced to endure days of suffering.
 
@@ -705,6 +705,32 @@ Keby ste chceli viac informácií o preprave koní na veľké vzdialenosti, obr
 Teším sa na Vašu skorú odpoveď.
 
 S pozdravom,
+
+
+""",
+"Ireland": """
+Dear,
+Dear,
+
+Please help us to end Europe’s single biggest abuse of horses by adding your voice  - please sign Written Declaration 54/2009.
+
+As a horse-lover and your constituent, I am writing to request your help to stop the suffering of thousands of horses as they are transported long distances every year across Europe to slaughter.
+
+100,000 horses are transported in horrific conditions across Europe annually, for days on end, in the height of summer and the depths of winter, without rest, food or water. The current legislation, EU Council Regulation (EC) 1/2005 has serious deficiencies and some Member States do not rigorously enforce it, resulting in exhaustion, injury, pain and stress among horses.
+
+These journeys are not only inhumane but totally unnecessary.
+
+World Horse Welfare has identified one slaughter route through Europe, which passes 180 licensed horse slaughter yards before reaching its final destination. Horses should be slaughtered as close to the point of origin as possible and transported as meat, not forced to endure days of suffering.
+
+A Written Declaration (54/2009) has recently been tabled, asking MEPs to show their support for a review of the current transport Regulation, specifically regarding horses. As your constituent, I am asking you to support Declaration 54/2009 by adding your signature before 11 February 2010, and by encouraging your fellow MEPs to do the same.
+
+132,565 European citizens have signed a petition, which was recently handed to the European Commission, asking for an end to this barbaric practice. Thousands more are sending postcards to Mr Barroso with a similar request. We now need your help to end this suffering for good. 
+
+If you would like any more information about the long distance transportation of horses to slaughter, please contact World Horse Welfare on +44 (0)1953 497226 (e:hannahlynch@worldhorsewelfare.org) or visit www.worldhorsewelfare.org. 
+
+I look forward to hearing from you soon.
+
+Yours sincerely,
 
 
 """,
