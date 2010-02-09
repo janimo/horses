@@ -1,5 +1,6 @@
 <html>
 	<head>
+		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.1/jquery.min.js"></script>
 		<style type="text/css">
 		pre {
 		white-space: pre-wrap; /* css-3 */
@@ -8,29 +9,53 @@
 		white-space: -o-pre-wrap; /* Opera 7 */
 		word-wrap: break-word; /* Internet Explorer 5.5+ */
 	        }
-               </style>
+		</style>
+		<script type="text/javascript">
+			$(document).ready(function() {
+				$("#id_country").change(function() {
+					$(".meps").each(function() {
+						$(this).hide();
+					});
+					$("#"+$(this).val()).show();
+					console.log($(this).val());
+				});
+			});
+		</script>
 	</head>
 	<body>
-		Hello {{ username}} !
-		<br>
 		<p>
-		This website lets you quickly send an email to all Romanian MEPs regarding the Written Declaration 54/2009 ( see <a href=http://www.worldhorsewelfare.org/help-tomorrow/long-distance-transportation>details</a> ) that needs to be signed by half the MEPs in order to pass.<br>
+		<h2>
+			Send an email to all of your country's European Parliament representatives, encouraging them to sign the <a href=http://www.worldhorsewelfare.org/help-tomorrow/long-distance-transportation>Written Declaration 54/2009</a>.
+			<br> It takes under a minute.
+		</h2>
 		</p>
 
-		You need to have a <a href="https://www.google.com/accounts">Google account</a> (having GMail is enough) and will be asked to sign in. Your password stays safe, everything happens at Google's servers. Afterwards you will see the emails sent in your Sent folder. <br><br>
+		You need to have a <a href="https://www.google.com/accounts">Google account</a> (having GMail is enough) and will be asked to sign in.
+		<h3>
+			Step 1: Pick the country<br>
+			Step 2: Fill in your name to be used in the email signature<br>
+			Step 3: Press the Send button.<br>
+		</h3>
 		<form action='/mail' method='get'>
-			<label>Please enter your full name, to be used in the closing of the email.
+			{{ form.as_p }}
+			<label>Full Name</label>
 			<input type='text' name='username' value=''>
-			<input type='submit' value='Send emails to MEPs'>
+			<br>
+			<br>
+			<br>
+			<input type='submit' value='Send'>
 		</form>
-		<br>
-		This is the body of the email you'll send (taken from <a href="http://www.worldhorsewelfare.ro/Transport-s14-ro.htm">http://worldhorsewelfare.ro<a/>)
-		<br>
-		<p>
-		<pre>
-		{{ mail }}
-                </pre>
-		</p>
-		<br>
+		<h3>
+			Afterwards you will see the emails sent in your Gmail account sent to these members of the European PAriliament. <br><br>
+		</h3>
+		<div id='mep'>
+			{% for ctry in meps.items %}
+			<div class='meps' id='{{ctry.0}}' style='display:none'>
+				{% for m in ctry.1 %}
+				{{ m }}<br>
+				{% endfor %}
+			</div>
+			{% endfor %}
+		</div>
 	</body>
 </html>
