@@ -8,7 +8,6 @@ meps = [
 	"Mr ioanmircea.pascu@europarl.europa.eu",
 	"Mr iosif.matula@europarl.europa.eu",
 	"Mr iuliu.winkler@europarl.europa.eu",
-	"Mr marian-jean.marinescu@europarl.europa.eu",
 	"Mr theodordumitru.stolojan@europarl.europa.eu",
 	"Mr traian.ungureanu@europarl.europa.eu",
 	"Mr tudorcorneliu.vadim@europarl.europa.eu",
