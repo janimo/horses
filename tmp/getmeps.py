@@ -8,7 +8,7 @@ def do_one_sheet(s):
     for r in range(1,s.nrows):
         row = s.row_values(r)
         if row[1] == '':
-            print('"'+row[2].strip()+'",')
+            print('"'+row[0][0:2]+" "+row[2].strip()+'",')
 
 def get_meps(file):
     wb = xlrd.open_workbook(file)
