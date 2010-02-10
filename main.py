@@ -19,7 +19,6 @@
 import string
 import os
 import cgi
-import logging
 
 from google.appengine.ext import db
 from google.appengine.ext import webapp
@@ -90,20 +89,11 @@ class SendMail(webapp.RequestHandler):
                 else:
                     greet = bs[2]
 
-                if True:
-                    logging.info(dest_address)
-                    mail.send_mail(user_address,
-                        'jani.monoses@gmail.com',
-                        mail_subj,
-                        greet + body + user_name
-                        )
-                    break
-                else:
-                    mail.send_mail(user_address,
-                        dest_address,
-                        mail_subj,
-                        greet + body + user_name
-                        )
+                mail.send_mail(user_address,
+                       dest_address,
+                       mail_subj,
+                       greet + body + user_name
+                       )
 
         # Save
         sm = SentMails()
