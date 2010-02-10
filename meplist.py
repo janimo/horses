@@ -352,7 +352,6 @@ meps = {
 "Mr thijs.berman@europarl.europa.eu",
 "Mr louis.bontes@europarl.europa.eu",
 "Ms emine.bozkurt@europarl.europa.eu",
-"Ms marije.cornelissen@europarl.europa.eu",
 "Ms jeanine.hennis-plasschaert@europarl.europa.eu",
 "Mr barry.madlener@europarl.europa.eu",
 "Mr toine.manders@europarl.europa.eu",
