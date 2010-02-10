@@ -2,7 +2,6 @@ meps = {
 "UK": [
 "Mr gerard.batten@europarl.europa.eu",
 "Mr philip.bradbourn@europarl.europa.eu",
-"Mr martin.callanan@europarl.europa.eu",
 "Mr david.campbellbannerman@europarl.europa.eu",
 "Mr derekroland.clark@europarl.europa.eu",
 "Mr nirj.deva@europarl.europa.eu",
