@@ -2,11 +2,9 @@ meps = {
 "UK": [
 "Mr gerard.batten@europarl.europa.eu",
 "Mr philip.bradbourn@europarl.europa.eu",
-"Mr martin.callanan@europarl.europa.eu",
 "Mr david.campbellbannerman@europarl.europa.eu",
 "Mr derekroland.clark@europarl.europa.eu",
 "Mr nirj.deva@europarl.europa.eu",
-"Mr nigel.farage@europarl.europa.eu",
 "Mr daniel.hannan@europarl.europa.eu",
 "Mr syed.kamall@europarl.europa.eu",
 "Mr bill.newtondunn@europarl.europa.eu",
@@ -249,7 +247,6 @@ meps = {
 "Hungary": [
 "Mr janos.ader@europarl.europa.eu",
 "Mr zoltan.balczo@europarl.europa.eu",
-"Mr lajos.bokros@europarl.europa.eu",
 "Mr tamas.deutsch@europarl.europa.eu",
 "Ms kinga.gal@europarl.europa.eu",
 "Mr bela.glattfelder@europarl.europa.eu",
