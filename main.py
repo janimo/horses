@@ -72,7 +72,7 @@ class SendMail(webapp.RequestHandler):
         res = query.get()
 
         if res:
-            self.redirect(users.create_logout_url('/done'))
+            self.redirect('/done')
             return
 
         #split Mr/Ms greeting from mail body
@@ -101,7 +101,7 @@ class SendMail(webapp.RequestHandler):
         sm.country = country
         sm.put()
 
-        self.redirect(users.create_logout_url('/done?meps=%d' % (len(meplist.meps[country]))))
+        self.redirect('/done?meps=%d' % (len(meplist.meps[country])))
 
 class SentMail(webapp.RequestHandler):
     def get(self):
