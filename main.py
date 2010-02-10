@@ -19,21 +19,31 @@
 import string
 import os
 import cgi
+import logging
 
 from google.appengine.ext import db
 from google.appengine.ext import webapp
 from google.appengine.ext.webapp import template
 from google.appengine.ext.webapp.util import *
+from google.appengine.ext.db import djangoforms
 from google.appengine.api import users
 from google.appengine.api import mail
 from google.appengine.api.labs import taskqueue
 
-import ro
+import meplist
+import bodies
+
+countrylist = sorted(meplist.meps.keys())
 
 class SentMails(db.Model):
     """ Mapping of user to country for which MEPs mail was sent"""
     friend = db.UserProperty()
-    countries = db.StringListProperty()
+    country = db.StringProperty(choices = countrylist)
+
+class SentMailsForm(djangoforms.ModelForm):
+    class Meta:
+        model = SentMails
+        exclude = ['friend']
 
 class MainHandler(webapp.RequestHandler):
     def get(self):
@@ -44,9 +54,11 @@ class MainHandler(webapp.RequestHandler):
             nick = user.nickname()
             nick = string.join(map(string.capitalize, string.split(nick)))
 
-        template_values = {'username': nick, 'mail': ro.mail_body}
+        template_values = {'username': nick, 'form': SentMailsForm(), 'meps': meplist.meps, 'bodies': bodies.bodies}
         path = os.path.join(os.path.dirname(__file__), 'index.html')
         self.response.out.write(template.render(path, template_values))
+
+mail_subj = "Declaration 54/2009"
 
 class SendMail(webapp.RequestHandler):
     @login_required
@@ -54,8 +66,9 @@ class SendMail(webapp.RequestHandler):
         user = users.get_current_user()
         user_address = user.email()
         user_name = self.request.str_GET["username"]
+        country = self.request.str_GET["country"]
 
-        query = SentMails.gql("WHERE friend = :1", user)
+        query = SentMails.gql("WHERE friend = :1 AND country = :2", user, country)
 
         res = query.get()
 
@@ -63,27 +76,42 @@ class SendMail(webapp.RequestHandler):
             self.redirect(users.create_logout_url('/done'))
             return
 
+        #split Mr/Ms greeting from mail body
+        body = bodies.bodies[country]
+        bs = body.split('\n', 3)
+
+        body = bs[3]
+
         if mail.is_email_valid(user_address):
-            for mep in ro.meps:
+            for mep in meplist.meps[country]:
                 m, dest_address = mep.split()
                 if m == "Mr":
-                    greet = ro.mrgreet
+                    greet = bs[1]
                 else:
-                    greet = ro.msgreet
+                    greet = bs[2]
 
-                mail.send_mail(user_address,
+                if True:
+                    logging.info(dest_address)
+                    mail.send_mail(user_address,
+                        'jani.monoses@gmail.com',
+                        mail_subj,
+                        greet + body + user_name
+                        )
+                    break
+                else:
+                    mail.send_mail(user_address,
                         dest_address,
-                        ro.mail_subj,
-                        greet + ro.mail_body + user_name
+                        mail_subj,
+                        greet + body + user_name
                         )
 
         # Save
         sm = SentMails()
         sm.friend = user
-        sm.countries = ['ro']
+        sm.country = country
         sm.put()
 
-        self.redirect(users.create_logout_url('/done?meps=%d' % (len(ro.meps))))
+        self.redirect(users.create_logout_url('/done?meps=%d' % (len(meplist.meps[country]))))
 
 class SentMail(webapp.RequestHandler):
     def get(self):
