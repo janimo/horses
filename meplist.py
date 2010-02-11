@@ -247,7 +247,6 @@ meps = {
 "Hungary": [
 "Mr janos.ader@europarl.europa.eu",
 "Mr zoltan.balczo@europarl.europa.eu",
-"Mr lajos.bokros@europarl.europa.eu",
 "Mr tamas.deutsch@europarl.europa.eu",
 "Ms kinga.gal@europarl.europa.eu",
 "Mr bela.glattfelder@europarl.europa.eu",
@@ -353,7 +352,6 @@ meps = {
 "Mr thijs.berman@europarl.europa.eu",
 "Mr louis.bontes@europarl.europa.eu",
 "Ms emine.bozkurt@europarl.europa.eu",
-"Ms marije.cornelissen@europarl.europa.eu",
 "Ms jeanine.hennis-plasschaert@europarl.europa.eu",
 "Mr barry.madlener@europarl.europa.eu",
 "Mr toine.manders@europarl.europa.eu",
