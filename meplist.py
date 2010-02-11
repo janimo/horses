@@ -270,7 +270,6 @@ meps = {
 "Mr liam.aylward@europarl.europa.eu",
 "Ms mairead.mcguinness@europarl.europa.eu",
 "Mr patthecope.gallagher@europarl.europa.eu",
-"Ms marian.harkin@europarl.europa.eu",
 "Mr brian.crowley@europarl.europa.eu",
 "Mr alan.kelly@europarl.europa.eu",
 "Mr sean.kelly@europarl.europa.eu",
@@ -498,7 +497,6 @@ meps = {
 "Sweden": [
 "Ms annamaria.bildt@europarl.europa.eu",
 "Mr christian.engstroem@europarl.europa.eu",
-"Mr christofer.fjellner@europarl.europa.eu",
 "Mr gunnar.hokmark@europarl.europa.eu",
 "Ms anna.ibrisagic@europarl.europa.eu",
 "Mr alf.svensson@europarl.europa.eu",
